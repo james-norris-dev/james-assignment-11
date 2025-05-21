@@ -1,18 +1,18 @@
 * {
     box-sizing: border-box;
-    background-color: cornflowerblue;
+    background-color: slategray;
 }
 
 table td {
 	padding: 5px;
 }
 table tr:nth-child(even) {
-  background-color: #eee;
+  background-color: black;
 }
 table tr:nth-child(odd) {
   background-color: #fff;
 }
 table th {
-  color: white;
-  background-color: black;
+  color: beige;
+  background-color: lightblue;
 }
