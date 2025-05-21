@@ -25,14 +25,14 @@ public class TransactionController {
         return "transactions";
     }
 
-    @GetMapping("/transaction/{transactionId}")
-    public String getTransactionById(@PathVariable Long transactionId, ModelMap model) {
+    @GetMapping("/transactions/{transactionId}")
+    public String getTransaction(@PathVariable Long transactionId, ModelMap model) {
         Transaction transaction = transactionService.findById(transactionId);
         model.addAttribute("transactionId", transactionId);
         model.addAttribute("transactionType", transaction.getType());
         model.addAttribute("transactionDate", transaction.getDate());
         model.addAttribute("transactionAmount", transaction.getAmount());
         model.addAttribute("transactionDescription", transaction.getDescription());
-        return "transaction";
+        return "transactions";
     }
 }
