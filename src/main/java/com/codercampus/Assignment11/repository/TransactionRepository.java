@@ -7,9 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
 public class TransactionRepository {
@@ -21,13 +19,14 @@ public class TransactionRepository {
     }
 
     public List<Transaction> findAll() {
-        return transactions.stream()
-                .sorted(Comparator.comparing(Transaction::getDate))
-                .collect(Collectors.toList());
+        return new ArrayList<>(transactions);
     }
 
     public Transaction findById(Long id) {
-        return transactions.stream().filter(t -> t.getId().equals(id)).findFirst().orElse(null);
+        return transactions.stream()
+                .filter(t -> t.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     /*
