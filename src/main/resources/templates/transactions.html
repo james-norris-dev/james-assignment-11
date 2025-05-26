@@ -8,7 +8,7 @@
 <header class="header">
     <h1 id="company-logo">BoCC <span id="wordmark">Bank of CodersCampus</span></h1>
 </header>
-<div th:hidden="${transactionId != null}" class="main-content">
+<div th:unless="${transaction}" class="main-content">
     <div class="main-heading">
         <h2>Transaction History</h2>
     </div>
@@ -31,24 +31,24 @@
         </tr>
     </table>
 </div>
-<div th:hidden="${transactionId == null}" class="main-content">
+<div th:if="${transaction}" class="main-content">
         <div class="main-heading">
-            <h2>Transaction ID: [[${transactionId}]] ([[${transactionType == 'C' ? 'Credit' :
+            <h2>Transaction ID: [[${transactionId}]] ([[${transaction.type == 'C' ? 'Credit' :
                 'Debit'}]])</h2>
         </div>
         <table>
             <tr>
                 <td>Date:</td>
-                <td th:text="${transactionDate}"></td>
+                <td th:text="${transaction.date}"></td>
             </tr>
-            <tr th:switch="${transactionType}">
+            <tr th:switch="${transaction.type}">
                 <td>Amount:</td>
-                <td th:case="'C'" style="color: green">+$[[${transactionAmount}]]</td>
-                <td th:case="'D'" style="color: red">-$[[${transactionAmount}]]</td>
+                <td th:case="'C'" style="color: green">+$[[${transaction.amount}]]</td>
+                <td th:case="'D'" style="color: red">-$[[${transaction.amount}]]</td>
             </tr>
             <tr>
                 <td>Description:</td>
-                <td id="td-description" th:text="${transactionDescription}"></td>
+                <td id="td-description" th:text="${transaction.description}"></td>
             </tr>
         </table>
         <div>
