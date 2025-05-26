@@ -18,6 +18,16 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
+    @GetMapping("/")
+    public String redirect() {
+        return "redirect:/transactions";
+    }
+
+    @GetMapping("/error")
+    public String error() {
+        return "error";
+    }
+
     @GetMapping("/transactions")
     public String getTransactions(ModelMap model) {
         List<Transaction> transactions = transactionService.findAll();
